@@ -10,9 +10,7 @@ public class BackgroundImage {
         getBackgroundImageVelocity = 3;
     }
 
-    public int getX(){
-        return backgroundImageX;
-    }
+    public int getX(){ return backgroundImageX; }
 
     public int getY(){
         return getBackgroundImageY;

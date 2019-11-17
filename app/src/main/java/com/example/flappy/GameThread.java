@@ -24,7 +24,9 @@ public class GameThread extends Thread{
         Canvas canvas = surfaceHolder.lockCanvas(null);
         if(canvas!=null){
             synchronized (surfaceHolder){
+                Log.i("msg","Som tu");
                 AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
+                AppConstants.getGameEngine().updateAndDrawBird(canvas);
                 //unlocking the canvas
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
@@ -40,5 +42,15 @@ public class GameThread extends Thread{
                 Log.e("Intterruped", "Interrupted while sleeping");
             };
         }
+    }
+
+    //return whether the thread is running
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setIsRunning(boolean running) {
+        isRunning = running;
     }
 }
