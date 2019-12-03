@@ -1,17 +1,33 @@
 package com.example.flappy;
 
 import android.graphics.Canvas;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class GameEngine {
 
+    Random random;
     BackgroundImage backgroundImage;
     Bird bird;
+    ArrayList<Column>northC;
+    ArrayList<Column>southC;
+    Column column1, column2;
+
     static int gameState; //0-not started , 1 - playing , 2 - game over
 
     public GameEngine(){
+        random = new Random();
         backgroundImage = new BackgroundImage();
         bird = new Bird();
-        gameState = 0;
+       /*northC = new ArrayList<Column>();
+        southC = new ArrayList<Column>();
+        southC.add(new Column(AppConstants.SCREEN_WIDTH*3/4, AppConstants.SCREEN_HEIGHT));*/
+       column1 = new Column(AppConstants.SCREEN_WIDTH*3/4, 1300);
+        column2 = new Column(AppConstants.SCREEN_WIDTH*3/4, -700);
+
+       gameState = 0;
     }
 
     public void updateAndDrawBackgroundImage(Canvas canvas){
@@ -34,8 +50,32 @@ public class GameEngine {
             }
         }
 
-
         canvas.drawBitmap(AppConstants.getBitmapBank().getBird(),bird.getBirdX(), bird.getBirdY(), null);
     }
+
+
+    public void updateAndDrawNP(Canvas canvas){
+        if(gameState == 1){
+            column1.setPosX(column1.getPosX() - 5);
+            Log.d("posy1","posY1: " + String.valueOf(column1.getPosY()));
+            canvas.drawBitmap(AppConstants.getBitmapBank().getNorthPipe(), column1.getPosX(), column1.getPosY(), null);
+        }
+    }
+
+    public void updateAndDrawSP(Canvas canvas){
+        if(gameState == 1){
+            column2.setPosX(column2.getPosX() - 5);
+            Log.d("posy2","posY2: " + String.valueOf(column1.getPosY()));
+            canvas.drawBitmap(AppConstants.getBitmapBank().getSouthPipe(), column2.getPosX(), column2.getPosY(), null);
+        }
+    }
+
+
+    public void updateAndDrawWall(Canvas canvas){
+        updateAndDrawNP(canvas);
+        updateAndDrawSP(canvas);
+    }
+
+
 
 }

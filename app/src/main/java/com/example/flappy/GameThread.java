@@ -13,6 +13,7 @@ public class GameThread extends Thread{
     long DELAY = 33; //delay in ms bewteen screen refreshes
 
 
+
     public GameThread(SurfaceHolder surfaceHolder){
         this.surfaceHolder = surfaceHolder;
         isRunning = true;
@@ -20,28 +21,29 @@ public class GameThread extends Thread{
 
     @Override
     public void run() {
-        startTime = SystemClock.uptimeMillis();
-        Canvas canvas = surfaceHolder.lockCanvas(null);
-        if(canvas!=null){
-            synchronized (surfaceHolder){
-                Log.i("msg","Som tu");
-                AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
-                AppConstants.getGameEngine().updateAndDrawBird(canvas);
-                //unlocking the canvas
-                surfaceHolder.unlockCanvasAndPost(canvas);
+        while(isRunning){
+            startTime = SystemClock.uptimeMillis();
+            Canvas canvas = surfaceHolder.lockCanvas(null);
+            if(canvas!=null){
+                synchronized (surfaceHolder){
+                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
+                    AppConstants.getGameEngine().updateAndDrawBird(canvas);
+                    AppConstants.getGameEngine().updateAndDrawWall(canvas);
+                    surfaceHolder.unlockCanvasAndPost(canvas);
+                }
+            }
+            //loop
+            loopTime = SystemClock.uptimeMillis()- startTime;
+            //pausing here to make sure we update the right amount per second
+            if(loopTime < DELAY){
+                try{
+                    Thread.sleep(DELAY - loopTime);
+                }catch(InterruptedException e){
+                    Log.e("Intterruped", "Interrupted while sleeping");
+                };
             }
         }
-        //loop
-        loopTime = SystemClock.uptimeMillis()- startTime;
-        //pausing here to make sure we update the right amount per second
 
-        if(loopTime < DELAY){
-            try{
-                Thread.sleep(DELAY - loopTime);
-            }catch(InterruptedException e){
-                Log.e("Intterruped", "Interrupted while sleeping");
-            };
-        }
     }
 
     //return whether the thread is running
