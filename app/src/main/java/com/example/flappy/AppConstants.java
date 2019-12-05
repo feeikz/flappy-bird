@@ -41,3 +41,4 @@ public class AppConstants {
         AppConstants.SCREEN_HEIGHT = height;
     }
 }
+

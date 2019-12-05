@@ -16,8 +16,8 @@ public class BitmapBank {
         background = BitmapFactory.decodeResource(res,R.drawable.background);
         background = scaleImage(background);
         bird = BitmapFactory.decodeResource(res, R.drawable.bird);
-        northPipe = BitmapFactory.decodeResource(res,R.drawable.pipedown);
-        southPipe = BitmapFactory.decodeResource(res, R.drawable.pipeup);
+        northPipe = BitmapFactory.decodeResource(res,R.drawable.pipeup1);
+        southPipe = BitmapFactory.decodeResource(res, R.drawable.pipedown1);
     }
 
     public Bitmap getBird() {
@@ -29,9 +29,7 @@ public class BitmapBank {
     public Bitmap getNorthPipe() {
         return northPipe;
     }
-    public Bitmap getSouthPipe() {
-        return southPipe;
-    }
+    public Bitmap getSouthPipe() {return southPipe; }
 
 
     public int getNorthPipeWidth(){
