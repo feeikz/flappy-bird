@@ -6,8 +6,8 @@ public class Bird {
 
 
     public Bird(){
-            birdX = AppConstants.SCREEN_WIDTH/2 - AppConstants.getBitmapBank().getBirdWidth() ;
-            birdY = AppConstants.SCREEN_HEIGHT/2 - AppConstants.getBitmapBank().getBirdHeight();
+            birdX = AppConstants.SCREEN_WIDTH/2;
+            birdY = AppConstants.SCREEN_HEIGHT/2;
             velocity = 0;
     }
 

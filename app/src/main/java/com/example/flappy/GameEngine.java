@@ -25,8 +25,10 @@ public class GameEngine {
     int numberOfTubes = 4;
     int[] tubeX =  new int[numberOfTubes];
     int[] topTubeY = new int[numberOfTubes];
-    Bitmap toptube, bottomtube;
     Rect bird_rect, north_rect, south_rect, view_rect;
+    Rect[] north_rects =  new Rect[numberOfTubes];
+    Rect[] south_rects = new Rect[numberOfTubes];
+
 
 
     static int gameState; //0-not started , 1 - playing , 2 - game over
@@ -35,6 +37,11 @@ public class GameEngine {
         random = new Random();
         backgroundImage = new BackgroundImage();
         bird = new Bird();
+        bird_rect = new Rect(AppConstants.SCREEN_WIDTH/2 - AppConstants.getBitmapBank().getBirdWidth(), AppConstants.SCREEN_HEIGHT/2-AppConstants.getBitmapBank().getBirdHeight(), AppConstants.getBitmapBank().getBirdWidth(), AppConstants.getBitmapBank().getBirdHeight());
+        north_rect = new Rect();
+        south_rect = new Rect();
+        view_rect = new Rect(0,0,AppConstants.SCREEN_WIDTH, AppConstants.SCREEN_HEIGHT);
+
 
         distanceBetweenTubes = AppConstants.SCREEN_WIDTH *3/4;
         minTubeOffset  = gap/2;
@@ -42,36 +49,18 @@ public class GameEngine {
         for(int i = 0; i<numberOfTubes; i++){
             tubeX[i] = AppConstants.SCREEN_WIDTH + i*distanceBetweenTubes;
             topTubeY[i] = minTubeOffset + random.nextInt(maxTubeOffset - minTubeOffset + 1);//wary between min and max
+            north_rects[i] = new Rect(tubeX[i], topTubeY[i] - AppConstants.getBitmapBank().getNorthPipeHeight(),AppConstants.getBitmapBank().getNorthPipeWidth(), AppConstants.getBitmapBank().getNorthPipeHeight());
+            south_rects[i] = new Rect(tubeX[i], topTubeY[i]+gap, AppConstants.getBitmapBank().getSouthPipeWidth(), AppConstants.getBitmapBank().getSouthPipeHeight());
         }
-
-       // view_rect = new Rect(0,0, AppConstants.SCREEN_WIDTH,AppConstants.SCREEN_HEIGHT);
-
-
-    /*
-
-        up1=new Column(AppConstants.SCREEN_WIDTH,-700);
-        up2=new Column(AppConstants.SCREEN_WIDTH  + AppConstants.SCREEN_WIDTH*1/2 + AppConstants.getBitmapBank().getNorthPipeWidth(),-700);
-        up3=new Column(2*AppConstants.SCREEN_WIDTH  + AppConstants.getBitmapBank().getNorthPipeWidth(),-700);
-
-        down1 =new Column(AppConstants.SCREEN_WIDTH,1300);
-        down2 =new Column(AppConstants.SCREEN_WIDTH  + AppConstants.SCREEN_WIDTH*1/2 + AppConstants.getBitmapBank().getNorthPipeWidth(), 1300 );
-        down3=new Column(2*AppConstants.SCREEN_WIDTH  + AppConstants.getBitmapBank().getSouthPipeWidth(),-700);
-
-        Column Up[] = {up1, up2};
-        Column Down[] = {down1, down2};
-*/
         gameState = 0;
     }
 
-
-
- /*   public void gameController(Canvas canvas){
-
-            if (checkCollision()){
-                gameState=2;
-                Log.d("Game Over","PROHRAL JSI");
-            }
-        }*/
+    public void gameController(Canvas canvas){
+                updateAndDrawBackgroundImage(canvas);
+                updateAndDrawBird(canvas);
+                updateAndDrawWall(canvas);
+                checkCollision();
+    }
 
 
 
@@ -96,7 +85,7 @@ public class GameEngine {
             }
         }
         canvas.drawBitmap(AppConstants.getBitmapBank().getBird(),bird.getBirdX(), bird.getBirdY(), null);
-        //bird_rect.set(bird.getBirdX(),bird.getBirdY(),AppConstants.getBitmapBank().getBirdWidth(), AppConstants.getBitmapBank().getBirdHeight());
+        bird_rect.set(bird.getBirdX(),bird.getBirdY(),AppConstants.getBitmapBank().getBirdWidth(), AppConstants.getBitmapBank().getBirdHeight());
     }
 
     public void newupdate (Canvas canvas){
@@ -108,9 +97,10 @@ public class GameEngine {
                     topTubeY[i] = minTubeOffset + random.nextInt(maxTubeOffset - minTubeOffset + 1);;//wary between min and max
                 }
                 canvas.drawBitmap(AppConstants.getBitmapBank().getNorthPipe(), tubeX[i], topTubeY[i] - AppConstants.getBitmapBank().getNorthPipeHeight(),null);
-               // north_rect.set(tubeX[i], topTubeY[i] - toptube.getHeight(),AppConstants.getBitmapBank().getNorthPipeWidth(), AppConstants.getBitmapBank().getNorthPipeHeight());
-                canvas.drawBitmap(AppConstants.getBitmapBank().getSouthPipe(), tubeX[i], topTubeY[i]+gap, null);
-               // south_rect.set(tubeX[i], topTubeY[i]+gap, AppConstants.getBitmapBank().getSouthPipeWidth(), AppConstants.getBitmapBank().getSouthPipeHeight());
+               north_rects[i].set(tubeX[i], topTubeY[i] -  AppConstants.getBitmapBank().getNorthPipeHeight(),AppConstants.getBitmapBank().getNorthPipeWidth(), AppConstants.getBitmapBank().getNorthPipeHeight());
+               //Log.d("msg", "north_rect["+String.valueOf(i)+"] = X " + String.valueOf(tubeX[i]) + " , Y = " + String.valueOf(topTubeY[i] -  AppConstants.getBitmapBank().getNorthPipeHeight()) + ", width = " + String.valueOf(AppConstants.getBitmapBank().getNorthPipeWidth()) + ", bottom = "  + String.valueOf(topTubeY[i] -  AppConstants.getBitmapBank().getNorthPipeHeight() + AppConstants.getBitmapBank().getNorthPipeHeight() )  );
+               canvas.drawBitmap(AppConstants.getBitmapBank().getSouthPipe(), tubeX[i], topTubeY[i]+gap, null);
+              south_rects[i].set(tubeX[i], topTubeY[i]+gap, AppConstants.getBitmapBank().getSouthPipeWidth(), AppConstants.getBitmapBank().getSouthPipeHeight());
             }
         }
     }
@@ -123,20 +113,18 @@ public class GameEngine {
         newupdate(canvas);
     }
 
-   /* public boolean checkCollision(){
+    public void checkCollision(){
         for(int i=0;i<numberOfTubes;i++){
-            bird_rect.set(bird.getBirdX(),bird.getBirdY(),AppConstants.getBitmapBank().getBirdWidth(), AppConstants.getBitmapBank().getBirdHeight());
-            north_rect.set(tubeX[i], topTubeY[i] - toptube.getHeight(),AppConstants.getBitmapBank().getNorthPipeWidth(), AppConstants.getBitmapBank().getNorthPipeHeight());
-            south_rect.set(tubeX[i], topTubeY[i]+gap, AppConstants.getBitmapBank().getSouthPipeWidth(), AppConstants.getBitmapBank().getSouthPipeHeight());
-            view_rect = new Rect(0,0, AppConstants.SCREEN_WIDTH,AppConstants.SCREEN_HEIGHT);
-
-            if(Rect.intersects(south_rect,bird_rect) || Rect.intersects(north_rect,bird_rect) || Rect.intersects(view_rect,bird_rect)){
-                return true;
+            if(Rect.intersects(south_rects[i],bird_rect) || Rect.intersects(north_rects[i],bird_rect)){
+                Log.d("m", "GameOver");
             }
-        }
-        return false;
+            if(bird.getBirdX() + AppConstants.getBitmapBank().getBirdWidth() > tubeX[i]){
+                Log.d("m", "OK");
+            }
 
-    }*/
+        }
+
+    }
 
     public void updateArrayUp(Canvas canvas){
         if(gameState==1){

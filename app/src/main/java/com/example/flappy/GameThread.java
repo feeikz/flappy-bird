@@ -27,10 +27,10 @@ public class GameThread extends Thread{
             if(canvas!=null){
                 synchronized (surfaceHolder){
 
-                    //AppConstants.getGameEngine().gameController(canvas);
-                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
-                    AppConstants.getGameEngine().updateAndDrawBird(canvas);
-                    AppConstants.getGameEngine().updateAndDrawWall(canvas);
+                    AppConstants.getGameEngine().gameController(canvas);
+                    //AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
+                    //AppConstants.getGameEngine().updateAndDrawBird(canvas);
+                    //AppConstants.getGameEngine().updateAndDrawWall(canvas);
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
