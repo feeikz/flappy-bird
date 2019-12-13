@@ -11,6 +11,8 @@ public class BitmapBank {
     Bitmap background;
     Bitmap bird;
     Bitmap northPipe, southPipe;
+    Bitmap tubeTop, tubeBottom;
+    Bitmap redTubeTop, redTubeBottom;
 
     public BitmapBank(Resources res) {
         background = BitmapFactory.decodeResource(res,R.drawable.background);
@@ -18,7 +20,36 @@ public class BitmapBank {
         bird = BitmapFactory.decodeResource(res, R.drawable.bird);
         northPipe = BitmapFactory.decodeResource(res,R.drawable.pipeup1);
         southPipe = BitmapFactory.decodeResource(res, R.drawable.pipedown1);
+        tubeTop = BitmapFactory.decodeResource(res, R.drawable.pipeup1);
+        tubeBottom = BitmapFactory.decodeResource(res, R.drawable.pipedown1);
+        redTubeBottom = BitmapFactory.decodeResource(res,R.drawable.pipedownred);
+        redTubeTop = BitmapFactory.decodeResource(res,R.drawable.pipeupred);
     }
+
+    public Bitmap getRedTubeTop(){
+       return redTubeTop;
+    }
+
+    public Bitmap getRedTubeBottom() {
+        return redTubeBottom;
+    }
+
+    public Bitmap getTubeTop(){
+        return tubeTop;
+    }
+
+    public Bitmap getTubeBottom(){
+        return tubeBottom;
+    }
+
+    public int getTubeWidth(){
+        return tubeTop.getWidth();
+    }
+
+    public int getTubeHeight(){
+        return  tubeTop.getHeight();
+    }
+
 
     public Bitmap getBird() {
         return bird;
@@ -56,7 +87,6 @@ public class BitmapBank {
 
     public Bitmap scaleImage(Bitmap bitmap){
         float widthHeightRatio = getBackgroundWidth() / getBackgroundHeight();
-
         //we will multiply widthHeightRatio with screenHeight to get scaled with of the bitmap
         //Then call createScaleBitmap() to create a new bitmap, scaled from an existing bitmap, when possible
         int backgroundScaleWidth = (int) widthHeightRatio  * AppConstants.SCREEN_HEIGHT;

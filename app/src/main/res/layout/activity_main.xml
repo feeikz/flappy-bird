@@ -19,23 +19,14 @@
         android:text="Start Game" />
 
     <Button
-        android:id="@+id/high_score_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="156dp"
-        android:layout_marginBottom="335dp"
-        android:text="High Score" />
-
-    <Button
         android:id="@+id/options_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="166dp"
-        android:layout_marginBottom="254dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginBottom="340dp"
+        android:onClick="openOptions"
         android:text="Options" />
 
 </RelativeLayout>

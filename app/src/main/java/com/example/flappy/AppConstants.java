@@ -13,13 +13,36 @@ public class AppConstants {
     static int SCREEN_WIDTH, SCREEN_HEIGHT;
     static int gravity;
     static int VELOCITY_WHEN_JUMPED;
+    static int gapBetweenTopAndBottomTubes;
+    static int numberOfTubes;
+    static int tubeVelocity;
+    static int minTubeOffsetY;
+    static int maxTubeOffsetY;
+    static int distanecBetweenTubes;
+    static SounBank sounBank;
+    static Context gameActivityContext;
 
     public static void initialization(Context context){
         setScreenSize(context);
         bitmapBank = new BitmapBank(context.getResources());
+        setGameConstants();
         gameEngine = new GameEngine();
+        sounBank = new SounBank(context);
+    }
+
+    public static SounBank getSounBank(){
+        return sounBank;
+    }
+
+    public static void setGameConstants(){
         AppConstants.gravity = 3;
         AppConstants.VELOCITY_WHEN_JUMPED = - 40;
+        gapBetweenTopAndBottomTubes = 600;
+        AppConstants.numberOfTubes = 2;
+        AppConstants.tubeVelocity = 12;
+        AppConstants.minTubeOffsetY = (int)(AppConstants.gapBetweenTopAndBottomTubes / 2.0);
+        AppConstants.maxTubeOffsetY = AppConstants.SCREEN_HEIGHT - AppConstants.minTubeOffsetY - AppConstants.gapBetweenTopAndBottomTubes;
+        AppConstants.distanecBetweenTubes = AppConstants.SCREEN_WIDTH * 3/4;
     }
 
     public static BitmapBank getBitmapBank(){

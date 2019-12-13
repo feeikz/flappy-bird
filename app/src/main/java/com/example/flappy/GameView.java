@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Switch;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -11,8 +12,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public GameView(Context context){
         super(context);
+
         initView();
     }
+
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -56,6 +59,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if(action == MotionEvent.ACTION_DOWN){
+            if(AppConstants.getGameEngine().gameState ==0){
+                AppConstants.getGameEngine().gameState =1;
+            }
+            else{
+                AppConstants.getSounBank().playJump();
+            }
             AppConstants.getGameEngine().gameState = 1;
             AppConstants.getGameEngine().bird.setVelocity(AppConstants.VELOCITY_WHEN_JUMPED);
         }
