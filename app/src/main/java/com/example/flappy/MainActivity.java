@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openOptions(View view){
+        Intent intent = new Intent(this,OptionsActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void startGame(View view){
         Log.i("ImageButton", "clicked");
         Intent intent = new Intent(this, GameActivity.class);
