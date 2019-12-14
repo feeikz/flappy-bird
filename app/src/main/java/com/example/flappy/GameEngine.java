@@ -3,6 +3,7 @@ package com.example.flappy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,8 +18,11 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+
 public class GameEngine {
 
+    SharedPreferences sharedPreferences;
     BackgroundImage backgroundImage;
     Bird bird;
     ArrayList<Tube> tubes;
@@ -26,6 +30,7 @@ public class GameEngine {
     int score;
     int scoringTube; //keeps track of scoring tubes
     Paint scorePaint;
+    boolean tmp;
 
 
     int distanceBetweenTubes, minTubeOffset, maxTubeOffset;
@@ -39,8 +44,12 @@ public class GameEngine {
 
     static int gameState; //0-not started , 1 - playing , 2 - game over
 
-    public GameEngine() {
 
+
+    public GameEngine() {
+        //Context context = AppConstants.gameActivityContext;
+        //sharedPreferences = context.getSharedPreferences("save",0);
+        //tmp = sharedPreferences.getBoolean("value", true);
         backgroundImage = new BackgroundImage();
         bird = new Bird();
         gameState = 0;
@@ -62,43 +71,32 @@ public class GameEngine {
         scorePaint.setTextSize(100);
         scorePaint.setTextAlign(Paint.Align.LEFT);
 
-        /*
-        bird_rect = new Rect(AppConstants.SCREEN_WIDTH/2, AppConstants.SCREEN_HEIGHT/2,  AppConstants.SCREEN_WIDTH/2+AppConstants.getBitmapBank().getBirdWidth(), AppConstants.SCREEN_HEIGHT/2+AppConstants.getBitmapBank().getBirdHeight());
-        north_rect = new Rect();
-        south_rect = new Rect();
-        view_rect = new Rect(0,0,AppConstants.SCREEN_WIDTH, AppConstants.SCREEN_HEIGHT);
-        distanceBetweenTubes = AppConstants.SCREEN_WIDTH *3/4;
-        minTubeOffset  = gap/2;
-        maxTubeOffset = AppConstants.SCREEN_HEIGHT - minTubeOffset - gap;
-        for(int i = 0; i<numberOfTubes; i++){
-            tubeX[i] = AppConstants.SCREEN_WIDTH + i*distanceBetweenTubes;
-            topTubeY[i] = minTubeOffset + random.nextInt(maxTubeOffset - minTubeOffset + 1);//wary between min and max
-            north_rects[i] = new Rect(tubeX[i], topTubeY[i] - AppConstants.getBitmapBank().getNorthPipeHeight(),tubeX[i]+AppConstants.getBitmapBank().getNorthPipeWidth(),topTubeY[i]);
-            south_rects[i] = new Rect(tubeX[i], topTubeY[i]+gap,tubeX[i] + AppConstants.getBitmapBank().getSouthPipeWidth(),topTubeY[i] + gap + AppConstants.getBitmapBank().getSouthPipeHeight());
-            Log.d("msg", "Juzna x left: " + String.valueOf(tubeX[i])+ " Juzna x right : " + String.valueOf(tubeX[i]+AppConstants.getBitmapBank().getSouthPipeWidth()) + " Juzna y top: " + String.valueOf(topTubeY[i]+gap) + " Juzna y bottom: " + String.valueOf(topTubeY[i] + gap + AppConstants.getBitmapBank().getSouthPipeHeight() ));
-            Log.d("msg", "Juzna x left: " + String.valueOf(south_rects[i].left)+ " Juzna x right :" + String.valueOf(south_rects[i].right ) + " Juzna y top: " + String.valueOf(south_rects[i].top) + " Juzna y bottom : " + String.valueOf(south_rects[i].bottom));
-            Log.d("msg", "bird left: " + String.valueOf(bird_rect.left) + " bird right: " + String.valueOf(bird_rect.right) + " bird top: " + String.valueOf(bird_rect.top) + "bird bot" + String.valueOf(bird_rect.bottom) );
-            Log.d("msg", "bird left: " + String.valueOf(bird.getBirdX()) + " bird right: " + String.valueOf(bird.getBirdX() + AppConstants.getBitmapBank().getBirdWidth()) + " bird top: " + String.valueOf(bird.getBirdY()) + " bird bot: " + String.valueOf(bird.getBirdY() + AppConstants.getBitmapBank().getBirdHeight()) );
-        */
     }
 
     public void updateAndDrawTubes(Canvas canvas) {
+
+
         if (gameState == 1) {
             if ((tubes.get(scoringTube).getTubeX() < bird.getBirdX() + AppConstants.getBitmapBank().getBirdWidth()) && (tubes.get(scoringTube).getTopTubeOffsetY() > bird.getBirdY() || tubes.get(scoringTube).getBottomTubeY() < (bird.getBirdY() + AppConstants.getBitmapBank().getBirdHeight()))) {
+               /* if(tmp){
+                    AppConstants.getSounBank().playHit();
+                }*/
                 AppConstants.getSounBank().playHit();
                 gameState = 2;
-                Log.d("Game", "Over");
                 Context context = AppConstants.gameActivityContext;
                 Intent intent = new Intent(context, GameOver.class);
                 intent.putExtra("score", score);
                 context.startActivity(intent);
-                ((Activity)context).finish();
+               // ((Activity)context).finish();
             } else if (tubes.get(scoringTube).getTubeX() < bird.getBirdX() - AppConstants.getBitmapBank().getTubeWidth()) {
                 score++;
                 scoringTube++;
                 if (scoringTube > AppConstants.numberOfTubes - 1) {
                     scoringTube = 0;
                 }
+                /*if(tmp){
+                    AppConstants.getSounBank().playPoint();
+                }*/
                 AppConstants.getSounBank().playPoint();
             }
             for (int i = 0; i < AppConstants.numberOfTubes; i++) {

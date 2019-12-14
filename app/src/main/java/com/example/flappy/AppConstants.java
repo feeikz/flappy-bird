@@ -22,11 +22,18 @@ public class AppConstants {
     static int distanecBetweenTubes;
     static SounBank sounBank;
     static Context gameActivityContext;
-    static boolean day = true;
+
 
     public static void initialization(Context context){
         setScreenSize(context);
-        bitmapBank = new BitmapBank(context.getResources());
+        bitmapBank = new BitmapBank(context.getResources(), true);
+        setGameConstants();
+        gameEngine = new GameEngine();
+        sounBank = new SounBank(context);
+    }
+    public static void initialization2(Context context){
+        setScreenSize(context);
+        bitmapBank = new BitmapBank(context.getResources(),false);
         setGameConstants();
         gameEngine = new GameEngine();
         sounBank = new SounBank(context);

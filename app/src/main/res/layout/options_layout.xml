@@ -15,9 +15,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="133dp"
         android:layout_marginBottom="481dp"
-        android:checked="true"
         android:text="Music"
-        tools:checked="true" />
+        />
 
     <Switch
         android:id="@+id/switch2"
@@ -27,9 +26,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="134dp"
         android:layout_marginBottom="361dp"
-        android:checked="false"
         android:text="Night Map"
-        tools:checked="false" />
+        />
 
     <Button
         android:id="@+id/back_button"

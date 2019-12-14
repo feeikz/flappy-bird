@@ -3,6 +3,7 @@ package com.example.flappy;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.nio.channels.Pipe;
 
@@ -13,12 +14,17 @@ public class BitmapBank {
     Bitmap northPipe, southPipe;
     Bitmap tubeTop, tubeBottom;
     Bitmap redTubeTop, redTubeBottom;
+    Settings settings;
 
-    public BitmapBank(Resources res) {
-        if(AppConstants.day){
+    public BitmapBank(Resources res, boolean day) {
+
+        settings = new Settings();
+        if(day ){
             background = BitmapFactory.decodeResource(res,R.drawable.background);
+        }else{
+            background = BitmapFactory.decodeResource(res,R.drawable.backgroundnight);
         }
-        else background = BitmapFactory.decodeResource(res,R.drawable.newb);
+
         background = scaleImage(background);
         bird = BitmapFactory.decodeResource(res, R.drawable.bird);
         northPipe = BitmapFactory.decodeResource(res,R.drawable.pipeup1);
@@ -29,6 +35,13 @@ public class BitmapBank {
         redTubeTop = BitmapFactory.decodeResource(res,R.drawable.pipeupred);
     }
 
+    public Bitmap setBackground(Resources res, boolean day){
+        if(day){
+            background = BitmapFactory.decodeResource(res,R.drawable.background);
+        }
+        else background = BitmapFactory.decodeResource(res,R.drawable.backgroundnight);
+        return background;
+    }
 
 
     public Bitmap getRedTubeTop(){
