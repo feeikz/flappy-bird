@@ -27,6 +27,7 @@
         <activity
             android:name=".GameActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden">
 
         </activity>
@@ -34,12 +35,14 @@
         <activity
             android:name=".OptionsActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden">
         </activity>
 
         <activity
             android:name=".GameOver"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden">
         </activity>
 

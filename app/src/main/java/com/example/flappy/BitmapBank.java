@@ -15,7 +15,10 @@ public class BitmapBank {
     Bitmap redTubeTop, redTubeBottom;
 
     public BitmapBank(Resources res) {
-        background = BitmapFactory.decodeResource(res,R.drawable.background);
+        if(AppConstants.day){
+            background = BitmapFactory.decodeResource(res,R.drawable.background);
+        }
+        else background = BitmapFactory.decodeResource(res,R.drawable.newb);
         background = scaleImage(background);
         bird = BitmapFactory.decodeResource(res, R.drawable.bird);
         northPipe = BitmapFactory.decodeResource(res,R.drawable.pipeup1);
@@ -25,6 +28,8 @@ public class BitmapBank {
         redTubeBottom = BitmapFactory.decodeResource(res,R.drawable.pipedownred);
         redTubeTop = BitmapFactory.decodeResource(res,R.drawable.pipeupred);
     }
+
+
 
     public Bitmap getRedTubeTop(){
        return redTubeTop;

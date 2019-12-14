@@ -3,6 +3,7 @@ package com.example.flappy;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,6 +22,7 @@ public class AppConstants {
     static int distanecBetweenTubes;
     static SounBank sounBank;
     static Context gameActivityContext;
+    static boolean day = true;
 
     public static void initialization(Context context){
         setScreenSize(context);
