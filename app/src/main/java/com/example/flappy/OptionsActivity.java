@@ -21,16 +21,16 @@ public class OptionsActivity extends Activity {
         sw = (Switch) findViewById(R.id.switch2);
         sw1 = (Switch) findViewById(R.id.switch1);
         settings = new Settings();
-        SharedPreferences options = getSharedPreferences("save", MODE_PRIVATE);
+        SharedPreferences options = getSharedPreferences("save", 0);
         sw.setChecked(options.getBoolean("value",false));
-        SharedPreferences options2 = getSharedPreferences("save2", MODE_PRIVATE);
+        SharedPreferences options2 = getSharedPreferences("save2",0);
         sw1.setChecked(options2.getBoolean("value2",false));
 
         sw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(sw.isChecked()){
-                    SharedPreferences.Editor editor = getSharedPreferences("save",MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences("save",0).edit();
                     editor.putBoolean("value",true);
                     editor.apply();
                     sw.setChecked(true);
@@ -38,7 +38,7 @@ public class OptionsActivity extends Activity {
                    // settings.setDay(false);
                 }
                 else{
-                    SharedPreferences.Editor editor = getSharedPreferences("save",MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences("save",0).edit();
                     editor.putBoolean("value",false);
                     editor.apply();
                     sw.setChecked(false);
@@ -52,14 +52,14 @@ public class OptionsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(sw1.isChecked()){
-                    SharedPreferences.Editor editor = getSharedPreferences("save2",MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences("save2",0).edit();
                     editor.putBoolean("value2",true);
                     editor.apply();
                     sw1.setChecked(true);
 
                 }
                 else{
-                    SharedPreferences.Editor editor = getSharedPreferences("save2",MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences("save2",0).edit();
                     editor.putBoolean("value2",false);
                     editor.apply();
                     sw1.setChecked(false);

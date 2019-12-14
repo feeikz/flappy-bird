@@ -31,6 +31,7 @@ public class GameEngine {
     int scoringTube; //keeps track of scoring tubes
     Paint scorePaint;
     boolean tmp;
+    Context context;
 
 
     int distanceBetweenTubes, minTubeOffset, maxTubeOffset;
@@ -46,10 +47,10 @@ public class GameEngine {
 
 
 
-    public GameEngine() {
-        //Context context = AppConstants.gameActivityContext;
-        //sharedPreferences = context.getSharedPreferences("save",0);
-        //tmp = sharedPreferences.getBoolean("value", true);
+    public GameEngine(Context context) {
+
+        sharedPreferences = context.getSharedPreferences("save2",0);
+        tmp = sharedPreferences.getBoolean("value2", true);
         backgroundImage = new BackgroundImage();
         bird = new Bird();
         gameState = 0;
@@ -78,26 +79,26 @@ public class GameEngine {
 
         if (gameState == 1) {
             if ((tubes.get(scoringTube).getTubeX() < bird.getBirdX() + AppConstants.getBitmapBank().getBirdWidth()) && (tubes.get(scoringTube).getTopTubeOffsetY() > bird.getBirdY() || tubes.get(scoringTube).getBottomTubeY() < (bird.getBirdY() + AppConstants.getBitmapBank().getBirdHeight()))) {
-               /* if(tmp){
+               if(tmp){
                     AppConstants.getSounBank().playHit();
-                }*/
-                AppConstants.getSounBank().playHit();
+                }
+                //AppConstants.getSounBank().playHit();
                 gameState = 2;
                 Context context = AppConstants.gameActivityContext;
                 Intent intent = new Intent(context, GameOver.class);
                 intent.putExtra("score", score);
                 context.startActivity(intent);
-               // ((Activity)context).finish();
+                ((Activity)context).finish();
             } else if (tubes.get(scoringTube).getTubeX() < bird.getBirdX() - AppConstants.getBitmapBank().getTubeWidth()) {
                 score++;
                 scoringTube++;
                 if (scoringTube > AppConstants.numberOfTubes - 1) {
                     scoringTube = 0;
                 }
-                /*if(tmp){
+                if(tmp){
                     AppConstants.getSounBank().playPoint();
-                }*/
-                AppConstants.getSounBank().playPoint();
+                }
+                //AppConstants.getSounBank().playPoint();
             }
             for (int i = 0; i < AppConstants.numberOfTubes; i++) {
                 if (tubes.get(i).getTubeX() < -AppConstants.getBitmapBank().getTubeWidth()) {

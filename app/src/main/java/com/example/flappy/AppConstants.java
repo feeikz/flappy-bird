@@ -28,14 +28,14 @@ public class AppConstants {
         setScreenSize(context);
         bitmapBank = new BitmapBank(context.getResources(), true);
         setGameConstants();
-        gameEngine = new GameEngine();
+        gameEngine = new GameEngine(context);
         sounBank = new SounBank(context);
     }
     public static void initialization2(Context context){
         setScreenSize(context);
         bitmapBank = new BitmapBank(context.getResources(),false);
         setGameConstants();
-        gameEngine = new GameEngine();
+        gameEngine = new GameEngine(context);
         sounBank = new SounBank(context);
     }
 

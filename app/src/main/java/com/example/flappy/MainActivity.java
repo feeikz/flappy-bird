@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences options = getSharedPreferences("save", MODE_PRIVATE);
+        SharedPreferences options = getSharedPreferences("save", 0);
         boolean tmp = options.getBoolean("value", true);
         Log.d("msg", String.valueOf(tmp));
         if(!tmp){
