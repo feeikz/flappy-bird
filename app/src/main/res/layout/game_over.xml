@@ -9,25 +9,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Restart"
-        android:onClick="restart"
         android:layout_alignParentLeft="true"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="#ffffff"
-        android:padding="10dp" />
+        android:layout_alignParentTop="true"
+        android:background="#1EFFFFFF"
+        android:onClick="restart"
+        android:padding="10dp"
+        android:text="MENU"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="#1EFFFFFF"
         android:onClick="exit"
-        android:text="Exit"
-        android:background="@android:color/holo_blue_dark"
         android:padding="10dp"
+        android:text="Exit"
         android:textColor="#ffffff" />
 
     <LinearLayout

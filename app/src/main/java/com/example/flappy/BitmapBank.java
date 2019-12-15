@@ -11,6 +11,7 @@ public class BitmapBank {
 
     Bitmap background;
     Bitmap bird;
+    Bitmap[] birds;
     Bitmap northPipe, southPipe;
     Bitmap tubeTop, tubeBottom;
     Bitmap redTubeTop, redTubeBottom;
@@ -26,7 +27,11 @@ public class BitmapBank {
         }
 
         background = scaleImage(background);
-        bird = BitmapFactory.decodeResource(res, R.drawable.bird);
+        //bird = BitmapFactory.decodeResource(res, R.drawable.bird);
+        birds = new Bitmap[3];
+        birds[0] = BitmapFactory.decodeResource(res,R.drawable.birdup);
+        birds[1] = BitmapFactory.decodeResource(res,R.drawable.birdmid);
+        birds[2] = BitmapFactory.decodeResource(res,R.drawable.birddown);
         northPipe = BitmapFactory.decodeResource(res,R.drawable.pipeup1);
         southPipe = BitmapFactory.decodeResource(res, R.drawable.pipedown1);
         tubeTop = BitmapFactory.decodeResource(res, R.drawable.pipeup1);
@@ -43,6 +48,16 @@ public class BitmapBank {
         return background;
     }
 
+    public Bitmap getBirds(int frame) {
+        return birds[frame];
+    }
+    public int getBirdsWidth(){
+        return birds[0].getWidth();
+    }
+
+    public int getBirdsHeight(){
+        return birds[0].getHeight();
+    }
 
     public Bitmap getRedTubeTop(){
        return redTubeTop;
@@ -95,8 +110,8 @@ public class BitmapBank {
         return southPipe.getHeight();
     }
 
-    public int getBirdWidth(){ return bird.getWidth(); }
-    public int getBirdHeight(){ return bird.getHeight(); }
+  //  public int getBirdWidth(){ return bird.getWidth(); }
+   // public int getBirdHeight(){ return bird.getHeight(); }
 
     public  int getBackgroundWidth(){ return background.getWidth(); }
     public int getBackgroundHeight(){ return background.getHeight(); }

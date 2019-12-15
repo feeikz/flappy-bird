@@ -78,7 +78,7 @@ public class GameEngine {
 
 
         if (gameState == 1) {
-            if ((tubes.get(scoringTube).getTubeX() < bird.getBirdX() + AppConstants.getBitmapBank().getBirdWidth()) && (tubes.get(scoringTube).getTopTubeOffsetY() > bird.getBirdY() || tubes.get(scoringTube).getBottomTubeY() < (bird.getBirdY() + AppConstants.getBitmapBank().getBirdHeight()))) {
+            if ((tubes.get(scoringTube).getTubeX() < bird.getBirdX() + AppConstants.getBitmapBank().getBirdsWidth()) && (tubes.get(scoringTube).getTopTubeOffsetY() > bird.getBirdY() || tubes.get(scoringTube).getBottomTubeY() < (bird.getBirdY() + AppConstants.getBitmapBank().getBirdsHeight()))) {
                if(tmp){
                     AppConstants.getSounBank().playHit();
                 }
@@ -135,16 +135,18 @@ public class GameEngine {
 
     public void updateAndDrawBird(Canvas canvas) {
         if (gameState == 1) {
-            if (bird.getBirdY() < (AppConstants.SCREEN_HEIGHT - AppConstants.getBitmapBank().getBirdHeight()) || bird.getVelocity() < 0) {
+            if (bird.getBirdY() < (AppConstants.SCREEN_HEIGHT - AppConstants.getBitmapBank().getBirdsHeight()) || bird.getVelocity() < 0) {
                 bird.setVelocity(bird.getVelocity() + AppConstants.gravity);
                 bird.setBirdY(bird.getBirdY() + bird.getVelocity());
             }
         }
-        canvas.drawBitmap(AppConstants.getBitmapBank().getBird(), bird.getBirdX(), bird.getBirdY(), null);
-        //bird_rect.set( bird.getBirdX(), bird.getBirdY(),bird.getBirdX()+AppConstants.getBitmapBank().getBirdWidth(), bird.getBirdY() + AppConstants.getBitmapBank().getBirdHeight());
-        //  Log.d("msg", "bird left: " + String.valueOf(bird_rect.left) + " bird right: " + String.valueOf(bird_rect.right) + " bird top: " + String.valueOf(bird_rect.top) + "bird bot" + String.valueOf(bird_rect.bottom) );
-        // Log.d("msg", "bird left: " + String.valueOf(bird.getBirdX()) + " bird right: " + String.valueOf(bird.getBirdX() + AppConstants.getBitmapBank().getBirdWidth()) + " bird top: " + String.valueOf(bird.getBirdY()) + " bird bot: " + String.valueOf(bird.getBirdY() + AppConstants.getBitmapBank().getBirdHeight()) );
-
+        int currentFrame = bird.getCurrentFrame();
+        currentFrame ++;
+        if(currentFrame > bird.maxFrame){
+            currentFrame = 0;
+        }
+        bird.setCurrentFrame(currentFrame);
+        canvas.drawBitmap(AppConstants.getBitmapBank().getBirds(currentFrame), bird.getBirdX(), bird.getBirdY(), null);
     }
 
     public void newupdate(Canvas canvas) {

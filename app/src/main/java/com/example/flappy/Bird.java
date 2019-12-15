@@ -2,14 +2,26 @@ package com.example.flappy;
 
 public class Bird {
 
-    private int birdX, birdY, velocity;
+    private int birdX, birdY, velocity, currentFrame;
+    public static int maxFrame;
 
 
     public Bird(){
             birdX = AppConstants.SCREEN_WIDTH/2;
             birdY = AppConstants.SCREEN_HEIGHT/2;
             velocity = 0;
+            currentFrame = 0;
+            maxFrame = 2;
     }
+
+    public int getCurrentFrame() {
+        return currentFrame;
+    }
+
+    public void setCurrentFrame(int currentFrame) {
+        this.currentFrame = currentFrame;
+    }
+
 
     public int getVelocity() {
         return velocity;

@@ -11,10 +11,9 @@
         android:id="@+id/start_game_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="153dp"
-        android:layout_marginBottom="417dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="414dp"
         android:onClick="startGame"
         android:text="Start Game" />
 
@@ -22,11 +21,20 @@
         android:id="@+id/options_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="165dp"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="340dp"
         android:onClick="openOptions"
         android:text="Options" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="273dp"
+        android:onClick="exit"
+        android:text="Exit" />
 
 </RelativeLayout>
