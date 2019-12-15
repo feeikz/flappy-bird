@@ -31,21 +31,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         database = new Database(this);
         listView = (ListView) findViewById(R.id.listview);
-        editText = (EditText)findViewById(R.id.editText);
-        addButton = (Button)findViewById(R.id.add_button);
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newEntry = editText.getText().toString();
-                if(editText.length() != 0){
-                    AddData(newEntry);
-                    editText.setText("");
-                }else {
-                    Toast.makeText(ScoreActivity.this,"You must put something in the text field !", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        
 
         ArrayList<String> arrayList = new ArrayList<>();
         Cursor data = database.getListContests();
