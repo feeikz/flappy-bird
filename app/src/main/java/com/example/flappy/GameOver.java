@@ -55,7 +55,7 @@ public class GameOver extends AppCompatActivity {
 
     public void restart(View view){
         if(send){
-            tmp = editText.getText().toString() + " SCORE:    " + String.valueOf(scoreX);
+            tmp = editText.getText().toString() + " \nSCORE:    " + String.valueOf(scoreX);
             AddData(tmp);
             tmp="";
         }
