@@ -80,4 +80,17 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginTop="513dp"
+        android:text="Default Name"
+        android:textSize="24sp"
+        android:visibility="invisible"></EditText>
+
 </RelativeLayout>

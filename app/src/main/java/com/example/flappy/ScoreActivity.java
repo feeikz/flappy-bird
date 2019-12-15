@@ -31,7 +31,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         database = new Database(this);
         listView = (ListView) findViewById(R.id.listview);
-        
+
 
         ArrayList<String> arrayList = new ArrayList<>();
         Cursor data = database.getListContests();
@@ -55,13 +55,4 @@ public class ScoreActivity extends AppCompatActivity {
         finish();
     }
 
-    public void AddData(String newEntry){
-        boolean insertData = database.addScore(newEntry.toString());
-
-        if(insertData){
-            Toast.makeText(ScoreActivity.this,"Succesfully Added", Toast.LENGTH_LONG).show();
-        }
-        else  Toast.makeText(ScoreActivity.this,"Somethings went wrong :( ", Toast.LENGTH_LONG).show();
-
-    }
 }

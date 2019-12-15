@@ -46,7 +46,7 @@ public class AppConstants {
     public static void setGameConstants(){
         AppConstants.gravity = 3;
         AppConstants.VELOCITY_WHEN_JUMPED = - 40;
-        gapBetweenTopAndBottomTubes = 400;
+        gapBetweenTopAndBottomTubes = 500;
         AppConstants.numberOfTubes = 2;
         AppConstants.tubeVelocity = 7;
         AppConstants.minTubeOffsetY = (int)(AppConstants.gapBetweenTopAndBottomTubes / 2.0);
