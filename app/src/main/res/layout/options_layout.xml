@@ -9,25 +9,22 @@
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="139dp"
-        android:layout_height="83dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="133dp"
-        android:layout_marginBottom="481dp"
-        android:text="Music"
-        />
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="200dp"
+        android:text="Music" />
 
     <Switch
         android:id="@+id/switch2"
-        android:layout_width="139dp"
-        android:layout_height="83dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="134dp"
-        android:layout_marginBottom="361dp"
-        android:text="Night Map"
-        />
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="300dp"
+        android:text="Night Map" />
 
     <Button
         android:id="@+id/back_button"

@@ -34,6 +34,7 @@ public class GameEngine {
     Paint scorePaint;
     boolean tmp;
     Context context;
+    Database database;
 
 
     int distanceBetweenTubes, minTubeOffset, maxTubeOffset;
@@ -86,6 +87,7 @@ public class GameEngine {
                 }
                 //AppConstants.getSounBank().playHit();
                 gameState = 2;
+               //database.addScore(String.valueOf(score));
                 Context context = AppConstants.gameActivityContext;
                 Intent intent = new Intent(context, GameOver.class);
                 intent.putExtra("score", score);
