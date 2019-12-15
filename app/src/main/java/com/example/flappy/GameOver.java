@@ -15,24 +15,31 @@ import com.example.flappy.Classes.Database;
 
 public class GameOver extends AppCompatActivity {
 
-    TextView tvScore, tvPersonalBest;
+    TextView tvScore, tvPersonalBest, high_score;
     Database database;
     EditText editText;
     String tmp;
     boolean send;
     int scoreX;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        SounBank sounBank;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_over);
         send = false;
         scoreX = 0;
 
+
+        sounBank = new SounBank(this);
+        high_score = (TextView)findViewById(R.id.high_score);
         database = new Database(this);
         tvScore = findViewById(R.id.tvScore);
         tvPersonalBest = findViewById(R.id.PersonalBest);
         editText = (EditText)findViewById(R.id.editText);
+        editText.setVisibility(View.INVISIBLE);
+        high_score.setVisibility(View.INVISIBLE);
         int score = getIntent().getExtras().getInt("score");
 
         SharedPreferences pref = getSharedPreferences("MyPref", 0);
@@ -40,7 +47,11 @@ public class GameOver extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
 
         if(score > scoreSP && score > 0){
+           // AppConstants.getSounBank().playWin();
+            //AppConstants.getSounBank().playPoint();
+            sounBank.playWin();
             editText.setVisibility(View.VISIBLE);
+            high_score.setVisibility(View.VISIBLE);
             scoreSP = score;
             scoreX=score;
             editor.putInt("scoreSP",scoreSP);
@@ -60,6 +71,7 @@ public class GameOver extends AppCompatActivity {
             tmp="";
         }
         editText.setVisibility(View.INVISIBLE);
+        high_score.setVisibility(View.INVISIBLE);
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         finish();

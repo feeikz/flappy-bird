@@ -79,9 +79,14 @@ public class GameEngine {
 
         if (gameState == 1) {
             if ((tubes.get(scoringTube).getTubeX() < bird.getBirdX() + AppConstants.getBitmapBank().getBirdsWidth()) && (tubes.get(scoringTube).getTopTubeOffsetY() > bird.getBirdY() || tubes.get(scoringTube).getBottomTubeY() < (bird.getBirdY() + AppConstants.getBitmapBank().getBirdsHeight()))) {
-               if(tmp){
-                    AppConstants.getSounBank().playHit();
-                }
+             new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     if(tmp){
+                         AppConstants.getSounBank().playHit();
+                     }
+                 }
+             }).start();
                 //AppConstants.getSounBank().playHit();
                 gameState = 2;
                 Context context = AppConstants.gameActivityContext;
@@ -96,7 +101,13 @@ public class GameEngine {
                     scoringTube = 0;
                 }
                 if(tmp){
-                    AppConstants.getSounBank().playPoint();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppConstants.getSounBank().playPoint();
+                        }
+                    }).start();
+
                 }
                 //AppConstants.getSounBank().playPoint();
             }
