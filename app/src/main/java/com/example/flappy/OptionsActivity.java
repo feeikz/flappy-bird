@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import androidx.annotation.Nullable;
+import com.example.flappy.Classes.Settings;
 
 public class OptionsActivity extends Activity {
 

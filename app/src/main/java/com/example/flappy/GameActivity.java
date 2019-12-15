@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import com.example.flappy.Classes.AppConstants;
 
 import androidx.annotation.Nullable;
+
+import com.example.flappy.Classes.AppConstants;
+import com.example.flappy.Classes.GameView;
 
 public class GameActivity extends Activity {
 

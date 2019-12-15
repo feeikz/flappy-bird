@@ -46,6 +46,13 @@
             android:configChanges="orientation|keyboardHidden">
         </activity>
 
+        <activity
+            android:name=".ScoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
+
 
     </application>
 
